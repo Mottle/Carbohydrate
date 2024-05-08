@@ -9,6 +9,7 @@ import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStack
 import java.util.*
+import kotlin.math.max
 
 class BaseDiet(private val player: Player) : IDiet {
 
@@ -34,23 +35,23 @@ class BaseDiet(private val player: Player) : IDiet {
     override fun getElectrolyte(): Float = player.getData(Attachments.ELECTROLYTE)
 
     override fun setCarbohydrate(carbohydrate: Float) {
-        player.setData(Attachments.CARBOHYDRATE, carbohydrate)
+        player.setData(Attachments.CARBOHYDRATE, max(carbohydrate, 0f))
     }
 
     override fun setGrease(grease: Float) {
-        player.setData(Attachments.GREASE, grease)
+        player.setData(Attachments.GREASE, max(grease, 0f))
     }
 
     override fun setProtein(protein: Float) {
-        player.setData(Attachments.PROTEIN, protein)
+        player.setData(Attachments.PROTEIN, max(protein, 0f))
     }
 
     override fun setPlantFiber(plantFiber: Float) {
-        player.setData(Attachments.PLANT_FIBER, plantFiber)
+        player.setData(Attachments.PLANT_FIBER, max(plantFiber, 0f))
     }
 
     override fun setElectrolyte(electrolyte: Float) {
-        player.setData(Attachments.ELECTROLYTE, electrolyte)
+        player.setData(Attachments.ELECTROLYTE, max(electrolyte, 0f))
     }
 
     override fun getEatenQueue(): Queue<Item> = player.getData(Attachments.EATEN_QUEUE).queue()
