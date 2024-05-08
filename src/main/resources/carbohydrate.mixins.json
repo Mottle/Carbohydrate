@@ -1,0 +1,17 @@
+{
+    "required": true,
+    "minVersion": "0.8",
+    "package": "dev.deepslate.carbohydrate.mixin",
+    "compatibilityLevel": "JAVA_8",
+    "refmap": "carbohydrate.refmap.json",
+    "mixins": [
+        "FoodDataMixin",
+        "PlayerMixin",
+        "ServerPlayerMixin"
+    ],
+    "client": [
+    ],
+    "injectors": {
+        "defaultRequire": 1
+    }
+}
