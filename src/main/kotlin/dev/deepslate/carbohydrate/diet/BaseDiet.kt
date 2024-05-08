@@ -61,7 +61,7 @@ class BaseDiet(private val player: Player) : IDiet {
         val nutrition = updateNutrition(stack, rate)
         eatFood(stack, rate)
 
-        if(nutrition == null) return
+        if (nutrition == null) return
         val effectTicks = when (nutrition.getFoodLevel()) {
             1 -> 30
             2 -> 60

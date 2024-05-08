@@ -10,8 +10,8 @@ object Handler {
     @SubscribeEvent
     fun register(event: RegisterPayloadHandlerEvent) {
         val registerer = event.registrar(Carbohydrate.MOD_ID)
-        registerer.play(DietSyncPacket.ID, ::DietSyncPacket) {
-            handler -> handler.client(ClientPayloadHandler::handle)
+        registerer.play(DietSyncPacket.ID, ::DietSyncPacket) { handler ->
+            handler.client(ClientPayloadHandler::handle)
         }
     }
 }

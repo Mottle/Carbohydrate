@@ -37,7 +37,9 @@ object Attachments {
         }
 
     val EATEN_QUEUE: DeferredHolder<AttachmentType<*>, AttachmentType<EatenQueue>> =
-        ATTACHMENT_TYPES.register("eaten_queue") { _ -> AttachmentType.serializable { _ -> EatenQueue() }.copyOnDeath().build() }
+        ATTACHMENT_TYPES.register("eaten_queue") { _ ->
+            AttachmentType.serializable { _ -> EatenQueue() }.copyOnDeath().build()
+        }
 
     val FOOD_LEVEL: DeferredHolder<AttachmentType<*>, AttachmentType<Int>> =
         ATTACHMENT_TYPES.register("food_level") { _ -> AttachmentType.builder { _ -> 0 }.serialize(Codec.INT).build() }

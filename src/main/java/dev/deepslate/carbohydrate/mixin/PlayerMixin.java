@@ -14,12 +14,12 @@ public class PlayerMixin {
 
     @Unique
     Player self() {
-        return (Player)(Object)this;
+        return (Player) (Object) this;
     }
 
     @Inject(method = "causeFoodExhaustion", at = @At("HEAD"), cancellable = true)
     void handleCauseFoodExhaustion(float pExhaustion, CallbackInfo ci) {
-        if(self().hasEffect(Effects.INSTANCE.getFULL().get())) {
+        if (self().hasEffect(Effects.INSTANCE.getFULL().get())) {
             ci.cancel();
             return;
         }

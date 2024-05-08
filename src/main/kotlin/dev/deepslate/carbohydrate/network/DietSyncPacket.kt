@@ -13,7 +13,7 @@ data class DietSyncPacket(
     val plantFiber: Float,
     val electrolyte: Float,
     val queue: EatenQueue
-): CustomPacketPayload {
+) : CustomPacketPayload {
 
     companion object {
         val ID = ResourceLocation(Carbohydrate.MOD_ID, "diet_sync_packet")

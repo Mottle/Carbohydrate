@@ -25,7 +25,7 @@ object Capabilities {
     fun register(event: RegisterCapabilitiesEvent) {
         event.registerEntity(DIET, EntityType.PLAYER, DietProvider())
         BuiltInRegistries.ITEM.forEach {
-            if(it.isEdible) event.registerItem(NUTRITION, NutritionProvider(), it)
+            if (it.isEdible) event.registerItem(NUTRITION, NutritionProvider(), it)
         }
     }
 }

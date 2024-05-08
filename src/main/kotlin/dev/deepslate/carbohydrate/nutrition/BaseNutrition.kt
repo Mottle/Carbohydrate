@@ -1,7 +1,5 @@
 package dev.deepslate.carbohydrate.nutrition
 
-import dev.deepslate.carbohydrate.Carbohydrate
-
 data class BaseNutrition(
     private val carbohydrate: Float = 0f,
     private val grease: Float = 0f,
@@ -9,7 +7,7 @@ data class BaseNutrition(
     private val plantFiber: Float = 0f,
     private val electrolyte: Float = 0f,
     private val foodLevel: Int = 0,
-): INutrition {
+) : INutrition {
     override fun getCarbohydrate(): Float = carbohydrate
 
     override fun getGrease(): Float = grease

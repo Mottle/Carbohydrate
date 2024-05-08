@@ -9,7 +9,7 @@ import net.neoforged.neoforge.capabilities.ICapabilityProvider
 class NutritionProvider : ICapabilityProvider<ItemStack, Void, INutrition> {
     override fun getCapability(stack: ItemStack, context: Void?): INutrition? {
 
-        if(check(stack)) {
+        if (check(stack)) {
             return VarNutrition(stack)
         }
 

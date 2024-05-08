@@ -1,11 +1,8 @@
 package dev.deepslate.carbohydrate.mixin;
 
 import dev.deepslate.carbohydrate.Capabilities;
-import dev.deepslate.carbohydrate.Carbohydrate;
-import dev.deepslate.carbohydrate.Effects;
 import dev.deepslate.carbohydrate.diet.IDiet;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodData;
@@ -25,26 +22,26 @@ public class FoodDataMixin {
 
     @Inject(method = "eat(Lnet/minecraft/world/item/Item;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/LivingEntity;)V", at = @At("HEAD"), cancellable = true)
     void handleEaten(Item item, ItemStack stack, LivingEntity entity, CallbackInfo ci) {
-        if(!stack.isEdible()) {
+        if (!stack.isEdible()) {
             ci.cancel();
             return;
         }
         var prop = stack.getFoodProperties(entity);
-        if(prop == null) {
+        if (prop == null) {
             ci.cancel();
             return;
         }
-        if(!(entity instanceof Player)) {
+        if (!(entity instanceof Player)) {
             ci.cancel();
             return;
         }
 
-        if(entity.level().isClientSide) {
+        if (entity.level().isClientSide) {
             ci.cancel();
             return;
         }
         IDiet diet = entity.getCapability(Capabilities.INSTANCE.getDIET());
-        if(diet == null)  {
+        if (diet == null) {
             ci.cancel();
             return;
         }

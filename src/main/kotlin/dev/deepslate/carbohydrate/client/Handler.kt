@@ -35,26 +35,34 @@ object Handler {
     fun handleTooltips(event: RenderTooltipEvent.GatherComponents) {
         val stack = event.itemStack
         val item = stack.item
-        if(!item.isEdible) return
+        if (!item.isEdible) return
         val player = Minecraft.getInstance().player ?: return
         val diet = player.getCapability(Capabilities.DIET) ?: return
         val eatTimes = diet.getFoodEatenTimes(item)
 
         val nutrition = stack.getCapability(Capabilities.NUTRITION)
-        if(nutrition != null) {
+        if (nutrition != null) {
             val foodLevel = nutrition.getFoodLevel()
-            val levelText = when(foodLevel) {
+            val levelText = when (foodLevel) {
                 1 -> "小食"
                 2 -> "简餐"
                 3 -> "盛宴"
                 else -> "零嘴"
             }
-            event.tooltipElements.add(Either.left(Component.literal(levelText).withStyle(ChatFormatting.BOLD, ChatFormatting.GREEN)))
+            event.tooltipElements.add(
+                Either.left(
+                    Component.literal(levelText).withStyle(ChatFormatting.BOLD, ChatFormatting.GREEN)
+                )
+            )
 
             fun addNutrition(name: String, value: Float) {
-                if(value <= 0) return
+                if (value <= 0) return
                 val formated = "%.1f".format(value)
-                event.tooltipElements.add(Either.left(Component.literal("$name: $formated%").withStyle(ChatFormatting.ITALIC, ChatFormatting.BLUE)))
+                event.tooltipElements.add(
+                    Either.left(
+                        Component.literal("$name: $formated%").withStyle(ChatFormatting.ITALIC, ChatFormatting.BLUE)
+                    )
+                )
             }
 
             addNutrition("碳水化合物", nutrition.getCarbohydrate())
@@ -64,13 +72,26 @@ object Handler {
             addNutrition("电解质", nutrition.getElectrolyte())
         }
 
-        val rate  = (diet.getFoodEatenRate(item) * 100f).toInt()
-        event.tooltipElements.add(Either.left(Component.literal("食物效果: $rate%").withStyle(ChatFormatting.ITALIC, ChatFormatting.DARK_PURPLE)))
+        val rate = (diet.getFoodEatenRate(item) * 100f).toInt()
+        event.tooltipElements.add(
+            Either.left(
+                Component.literal("食物效果: $rate%").withStyle(ChatFormatting.ITALIC, ChatFormatting.DARK_PURPLE)
+            )
+        )
 
-        if(eatTimes != 0) {
-            event.tooltipElements.add(Either.left(Component.literal("在过去10次中你食用了${eatTimes}次").withStyle(ChatFormatting.ITALIC, ChatFormatting.DARK_PURPLE)))
+        if (eatTimes != 0) {
+            event.tooltipElements.add(
+                Either.left(
+                    Component.literal("在过去10次中你食用了${eatTimes}次")
+                        .withStyle(ChatFormatting.ITALIC, ChatFormatting.DARK_PURPLE)
+                )
+            )
         } else {
-            event.tooltipElements.add(Either.left(Component.literal("最近还没吃过呢").withStyle(ChatFormatting.ITALIC, ChatFormatting.DARK_PURPLE)))
+            event.tooltipElements.add(
+                Either.left(
+                    Component.literal("最近还没吃过呢").withStyle(ChatFormatting.ITALIC, ChatFormatting.DARK_PURPLE)
+                )
+            )
         }
     }
 }

@@ -34,9 +34,12 @@ interface IDiet {
         fun sync(player: ServerPlayer) {
             val diet = player.getCapability(Capabilities.DIET) ?: return
             with(diet) {
-                if(player.level().isClientSide) return
-                val data = DietSyncPacket(getCarbohydrate(), getGrease(), getProtein(), getPlantFiber(), getElectrolyte(), player.getData(
-                    Attachments.EATEN_QUEUE))
+                if (player.level().isClientSide) return
+                val data = DietSyncPacket(
+                    getCarbohydrate(), getGrease(), getProtein(), getPlantFiber(), getElectrolyte(), player.getData(
+                        Attachments.EATEN_QUEUE
+                    )
+                )
                 PacketDistributor.PLAYER.with(player).send(data)
             }
         }
